@@ -14,7 +14,7 @@
             <div class="col-auto">
                 <div class="logo-image">
                     <a href="{{ route('home') }}">
-                        <img src="{{ get_image(get_frontend_settings('dark_logo')) }}" alt="system logo" class="object-fit-cover rounded header-dark-logo">
+                       <h3> <img src="{{ get_image(get_frontend_settings('dark_logo')) }}" alt="system logo" class="object-fit-cover rounded header-dark-logo">  تطوير  </h3>
                         <img src="{{ get_image(get_frontend_settings('light_logo')) }}" alt="system logo" class="object-fit-cover rounded header-light-logo d-none">
                     </a>
                 </div>
@@ -24,6 +24,10 @@
                     <div class="nav-menu w-100">
                         <ul class="primary-menu main-menu-ul d-flex align-items-center w-100">
                             <li><a href="{{ route('home') }}" class="@if ($current_route == 'home') active @endif">{{ get_phrase('Home') }}</a></li>
+                            <li><a href="#" class="@if ($current_route == 'categories') active @endif">{{ get_phrase('Categories') }}</a></li>
+                            <li class="have-mega-menu"><a class="menu-parent @if ($current_route == 'courses') active @endif" href="#">{{ get_phrase('Courses') }}</a></li>
+                            <li><a href="#" class="@if ($current_route == 'packages') active @endif">{{ get_phrase('Packages') }}</a></li>
+                            <li><a href="#" class="@if ($current_route == 'contact_us') active @endif">{{ get_phrase('Contact with Us') }}</a></li>
                             {{-- <li class="have-mega-menu"><a class="menu-parent-a @if ($current_route == 'home') active @endif" href="{{ route('home') }}">{{ get_phrase('Home') }}</a>
                                 <ul class="mega-dropdown-menu mega main-mega-menu">
                                     <div class="mega-menu-items">
@@ -40,9 +44,7 @@
                                     </div>
                                 </ul>
                             </li> --}}
-                            <li class="have-mega-menu"><a class="menu-parent @if ($current_route == 'courses') active @endif" href="{{ route('courses') }}">{{ get_phrase('Courses') }}</a>
 
-                            </li>
                             {{-- <li class="pe-2 ps-5"><a href="{{ route('bootcamps') }}" class="@if ($current_route == 'bootcamps' || $current_route == 'bootcamp.details') active @endif">{{ get_phrase('Bootcamp') }}</a></li> --}}
                             {{-- <li><a href="{{ route('team.packages') }}" class="@if ($current_route == 'team.packages' || $current_route == 'team.package.details') active @endif">{{ get_phrase('Team Training') }}</a></li> --}}
                             {{-- <li><a href="{{ route('tutor_list') }}" class="@if ($current_route == 'tutor_list') active @endif">{{ get_phrase('Find A Tutor') }}</a></li> --}}

@@ -21,6 +21,7 @@ Route::get('/clear-cache', function () {
 });
 
 Route::get('home/switch/{id}', [HomeController::class, 'homepage_switcher'])->name('home.switch');
+Route::get('categories', [HomeController::class, 'categories'])->name('categories');
 
 //Redirect route
 Route::get('/dashboard', function () {

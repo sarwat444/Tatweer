@@ -72,6 +72,8 @@
 }
 </style>
 <body>
+
+
     @php $current_route_name = Route::currentRouteName(); @endphp
     @php
         if (session('home')) {
@@ -150,6 +152,14 @@
 
     <!-- Main Js -->
     <script src="{{ asset('assets/frontend/default/js/script.js') }}"></script>
+    <script>
+        // فتح البوابة بعد التأخير
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 2500);
+        });
+    </script>
 
     @if(get_frontend_settings('cookie_status'))
         @include('frontend.default.cookie')

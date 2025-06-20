@@ -7,6 +7,10 @@
             right: 20px;
             cursor: pointer !important;
         }
+        .login-img img
+        {
+            height: auto;
+        }
     </style>
 @endpush
 @section('content')
@@ -16,81 +20,108 @@
     <section class="login-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7 col-md-6">
+                <div class="col-lg-5 col-md-5">
                     <div class="login-img">
                         <img src="{{ asset('assets/frontend/' . get_frontend_settings('theme') . '/image/signup.gif') }}" alt="register-banner">
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-6">
-                    <form action="{{ route('register') }}" class="global-form login-form mt-25" id="login-form" method="post" enctype="multipart/form-data">@csrf
+                <div class="col-lg-7 col-md-7">
+                    <form action="{{ route('register') }}" class="global-form login-form mt-25" id="login-form" method="post" enctype="multipart/form-data">
+                        @csrf
                         <h4 class="g-title">{{ get_phrase('Sign Up') }}</h4>
                         <p class="description">{{ get_phrase('See your growth and get consulting support! ') }}</p>
-                        <div class="form-group mb-5">
-                            <label for="" class="form-label">{{ get_phrase('Name') }}</label>
-                            <input type="text" name="name" class="form-control" placeholder="Your Name">
 
-                            @error('name')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="" class="form-label">{{ get_phrase('Name') }}</label>
+                                <input type="text" name="name" class="form-control" placeholder="{{ get_phrase('Name') }}">
+                                @error('name') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label for="phone" class="form-label">{{ get_phrase('Phone Number') }}</label>
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="{{ get_phrase('Phone Number') }}">
+                                @error('phone') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label for="address" class="form-label">{{ get_phrase('Address') }}</label>
+                                <input type="text" name="address" id="address" class="form-control" placeholder="{{ get_phrase('Address') }}">
+                                @error('address') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label for="photo" class="form-label">{{ get_phrase('User image') }}</label>
+                                <input type="file" name="photo" class="form-control ol-form-control" id="photo">
+                                @error('photo') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label for="email" class="form-label">{{ get_phrase('Email') }}</label>
+                                <input type="email" name="email" class="form-control" placeholder="{{ get_phrase('Email') }}">
+                                @error('email') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label for="password" class="form-label">{{ get_phrase('Password') }}</label>
+                                <input type="password" name="password" class="form-control" placeholder="*********">
+                                @error('password') <small class="text-danger">{{ $message }}</small> @enderror
+                            </div>
                         </div>
-                        <div class="form-group mb-5">
-                            <label for="phone" class="form-label">{{ get_phrase('Phone Number') }}</label>
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label">{{ get_phrase('User Type') }}</label>
+                                <select name="user_type" id="user_type" class="form-control">
+                                    <option value="">{{ get_phrase('User Type') }}</option>
+                                    <option value="student">{{ get_phrase('Student') }}</option>
+                                    <option value="teacher">{{ get_phrase('Teacher') }}</option>
+                                    <option value="institution">{{ get_phrase('Educational Institution') }}</option>
+                                </select>
+                            </div>
 
-                            @error('phone')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                            {{-- Student - Educational Stage --}}
+                            <div class="col-md-6 mb-4 d-none" id="student_stage">
+                                <label class="form-label">{{ get_phrase('Educational Stage') }}</label>
+                                <select name="educational_stage" class="form-control">
+                                    <option value="">{{ get_phrase('Select Stage') }}</option>
+                                    <option value="primary">{{ get_phrase('Primary') }}</option>
+                                    <option value="preparatory">{{ get_phrase('Preparatory') }}</option>
+                                    <option value="secondary">{{ get_phrase('Secondary') }}</option>
+                                </select>
+                            </div>
+
+                            {{-- Teacher Type --}}
+                            <div class="col-md-6 mb-4 d-none" id="teacher_type_wrap">
+                                <label class="form-label">{{ get_phrase('Teacher Type') }}</label>
+                                <select name="teacher_type" id="teacher_type" class="form-control">
+                                    <option value="">{{ get_phrase('Select Type') }}</option>
+                                    <option value="general">{{ get_phrase('General Educational') }}</option>
+                                    <option value="academic">{{ get_phrase('Academic') }}</option>
+                                    <option value="advanced">{{ get_phrase('Advanced') }}</option>
+                                </select>
+                            </div>
+
+                            {{-- Teacher Subject --}}
+                            <div class="col-md-6 mb-4 d-none" id="teacher_subject_wrap">
+                                <label class="form-label">{{ get_phrase('Subject Specialization') }}</label>
+                                <input type="text" name="subject_specialization" class="form-control" placeholder="{{ get_phrase('Enter Subject') }}">
+                            </div>
+
+                            {{-- Institution Info --}}
+                            <div class="col-md-6 mb-4 d-none" id="institution_name_wrap">
+                                <label class="form-label">{{ get_phrase('Institution Name') }}</label>
+                                <input type="text" name="institution_name" class="form-control" placeholder="{{ get_phrase('Enter Institution Name') }}">
+                            </div>
+
+                            <div class="col-md-6 mb-4 d-none" id="institution_type_wrap">
+                                <label class="form-label">{{ get_phrase('Institution Type') }}</label>
+                                <select name="institution_type" class="form-control">
+                                    <option value="">{{ get_phrase('Select Type') }}</option>
+                                    <option value="school">{{ get_phrase('School') }}</option>
+                                    <option value="institute">{{ get_phrase('Institute') }}</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group mb-5">
-                            <label for="address" class="form-label">{{ get_phrase('Address') }}</label>
-                            <input type="text" name="address" id="address" class="form-control" placeholder="Your Address">
-
-                            @error('address')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-5">
-                            <label for="photo" class="form-label">{{ get_phrase('User image') }}</label>
-                            <input type="file" name="photo" class="form-control ol-form-control" id="photo">
-
-                            @error('photo')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-
-                        <div class="form-group mb-5">
-                            <label for="category_id" class="form-label">{{ get_phrase('Grade') }}</label>
-                            <select name="category_id" id="category_id" class="form-control ol-form-control">
-                                @foreach ($categories as $category)
-                                   <option value="{{$category->id}}">{{$category->title}} </option> 
-                                @endforeach
-                            </select>
-
-                            @error('category_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-
-                        <div class="form-group mb-5">
-                            <label for="" class="form-label">{{ get_phrase('Email') }}</label>
-                            <input type="email" name="email" class="form-control" placeholder="Your Email">
-
-                            @error('email')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-5">
-                            <label for="" class="form-label">{{ get_phrase('Password') }}</label>
-                            <input type="password" name="password" class="form-control" placeholder="*********">
-
-                            @error('password')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
                         @if(get_frontend_settings('recaptcha_status'))
                             <button class="eBtn gradient w-100 g-recaptcha" data-sitekey="{{ get_frontend_settings('recaptcha_sitekey') }}" data-callback='onLoginSubmit' data-action='submit'>{{ get_phrase('Sign Up') }}</button>
                         @else
@@ -99,6 +130,7 @@
 
                         <p class="mt-20">{{ get_phrase('Already have account.') }} <a href="{{ route('login') }}">{{ get_phrase('Sign in') }}</a></p>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -138,5 +170,37 @@
             document.getElementById("login-form").submit();
         }
 
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#user_type').on('change', function() {
+                let type = $(this).val();
+
+                // Hide all first
+                $('#student_stage, #teacher_type_wrap, #teacher_subject_wrap, #institution_name_wrap, #institution_type_wrap').addClass('d-none');
+
+                if (type === 'student') {
+                    $('#student_stage').removeClass('d-none');
+                }
+
+                if (type === 'teacher') {
+                    $('#teacher_type_wrap').removeClass('d-none');
+                }
+
+                if (type === 'institution') {
+                    $('#institution_name_wrap, #institution_type_wrap').removeClass('d-none');
+                }
+            });
+
+            $('#teacher_type').on('change', function() {
+                let teacherType = $(this).val();
+
+                if (teacherType === 'general' || teacherType === 'academic' || teacherType === 'advanced') {
+                    $('#teacher_subject_wrap').removeClass('d-none');
+                } else {
+                    $('#teacher_subject_wrap').addClass('d-none');
+                }
+            });
+        });
     </script>
 @endpush

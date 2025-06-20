@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-      
+
         $input = $request->all();
 
         if (get_frontend_settings('recaptcha_status') == true && check_recaptcha($input['g-recaptcha-response']) == false) {
@@ -45,8 +45,7 @@ class RegisteredUserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'digits_between:7,15'], 
-            'catrgory_id' => ['required'], 
+            'phone' => ['required', 'digits_between:7,15'],
             'address' => ['required', 'string', 'max:500'],
             'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'email' => ['required', 'string', 'email', 'unique:users,email'],
@@ -67,7 +66,6 @@ class RegisteredUserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'email' => $request->email,
-            'catrgory_id' => $request->catrgory_id,
             'photo' =>$path,
             'role' => 'student',
             'status' => 1,

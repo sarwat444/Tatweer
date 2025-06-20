@@ -28,7 +28,6 @@
             <div class="col-lg-12">
                 <div class="res-control d-flex align-items-center justify-content-between">
                     <div class="section-title mb-0">
-                        <span class="title-head builder-editable" builder-identity="1">{{ get_phrase("Courses") }}</span>
                         <h2 class="title builder-editable" builder-identity="2">{{ get_phrase("Featured Courses") }}
                         </h2>
                     </div>
@@ -55,27 +54,23 @@
                 // Optional: handle guest users differently or return empty collection
                 $featured_courses = App\Models\Course::where('status', 'active')
                                         ->latest('id')->get();
+
             }
         @endphp
-
             <div class="row mt-50 gx-5">
                 @foreach ($featured_courses->take(4) as $key => $row)
-                    <div class="col-lg-6 col-md-12 col-sm-6 mb-30">
+                    <div class="col-lg-4 col-md-12 col-sm-4 mb-30">
                         <a href="{{ route('course.details', $row->slug) }}" class="single-feature p-15 w-100 checkPropagation">
                             <div class="row">
                                 <div class="col-lg-5 col-md-5">
                                     <div class="courses-img">
                                         <img class="h-190" src="{{ get_image($row->thumbnail) }}" alt="...">
-                                        @auth
-                                    @endauth
                                     </div>
                                 </div>
                                 <div class="col-lg-7 col-md-7">
                                     <div class="entry-details">
                                         <div class="entry-title">
                                             <h3 class="ellipsis-line-2">{{ ellipsis(ucfirst($row->title), 160) }}</h3>
-
-
                                         </div>
                                         <ul>
                                             <li>

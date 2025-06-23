@@ -19,7 +19,6 @@
                     </div>
 
                     <div class="course-details pe-auto">
-
                         <h2 class="g-title ellipsis-line-2">{{ $bootcamp_details->title }}</h2>
                         <p class="g-text text-dark ellipsis-line-2">
                             {{ $bootcamp_details->short_description }}
@@ -180,9 +179,9 @@
 
                 $(this).toggleClass('active');
                 if ($(this).hasClass('active')) {
-                    $(this).text('See less');
+                    $(this).text('{{ get_phrase("Show less") }}');
                 } else {
-                    $(this).html('See more <i class="fa-solid fa-angle-right me-2"></i>');
+                    $(this).html('{{ get_phrase("Show more") }} <i class="fa-solid fa-angle-right me-2"></i>');
                 }
             });
 

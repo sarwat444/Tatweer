@@ -25,7 +25,7 @@
                         <ul class="primary-menu main-menu-ul d-flex align-items-center w-100">
                             <li><a href="{{ route('home') }}" class="@if ($current_route == 'home') active @endif">{{ get_phrase('Home') }}</a></li>
                             <li><a href="#" class="@if ($current_route == 'categories') active @endif">{{ get_phrase('Categories') }}</a></li>
-                            <li class="have-mega-menu"><a class="menu-parent @if ($current_route == 'courses') active @endif" href="#">{{ get_phrase('Courses') }}</a></li>
+                            <li class="have-mega-menu"><a class="menu-parent @if ($current_route == 'courses') active @endif" href="{{ route('courses') }}">{{ get_phrase('Courses') }}</a></li>
                             <li><a href="#" class="@if ($current_route == 'packages') active @endif">{{ get_phrase('Packages') }}</a></li>
                             <li><a href="#" class="@if ($current_route == 'contact_us') active @endif">{{ get_phrase('Contact with Us') }}</a></li>
                             {{-- <li class="have-mega-menu"><a class="menu-parent-a @if ($current_route == 'home') active @endif" href="{{ route('home') }}">{{ get_phrase('Home') }}</a>

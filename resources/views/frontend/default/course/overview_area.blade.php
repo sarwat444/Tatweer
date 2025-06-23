@@ -9,7 +9,7 @@
     </div>
     @if (isset($course_details->description))
         <a href="#" class="s_stext" id="more_description">
-            {{ get_phrase('See more') }} <i class="fa-solid fa-angle-right me-2"></i>
+            {{ get_phrase("Show more") }} <i class="fa-solid fa-angle-right me-2"></i>
         </a>
     @endif
 

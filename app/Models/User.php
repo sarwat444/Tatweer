@@ -31,7 +31,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'photo',
         'address',
         'phone',
-        'catrgory_id'
+        'educational_stage' ,
+        'instructor_type' ,
+        'subject_specialization' ,
+        'institution_name' ,
+        'institution_type' ,
+
 
     ];
 

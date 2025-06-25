@@ -74,7 +74,7 @@
                                 <select name="user_type" id="user_type" class="form-control">
                                     <option value="">{{ get_phrase('User Type') }}</option>
                                     <option value="student">{{ get_phrase('Student') }}</option>
-                                    <option value="teacher">{{ get_phrase('Teacher') }}</option>
+                                    <option value="instructor">{{ get_phrase('instructor') }}</option>
                                     <option value="institution">{{ get_phrase('Educational Institution') }}</option>
                                 </select>
                             </div>
@@ -90,10 +90,10 @@
                                 </select>
                             </div>
 
-                            {{-- Teacher Type --}}
-                            <div class="col-md-6 mb-4 d-none" id="teacher_type_wrap">
-                                <label class="form-label">{{ get_phrase('Teacher Type') }}</label>
-                                <select name="teacher_type" id="teacher_type" class="form-control">
+                            {{-- instructor Type --}}
+                            <div class="col-md-6 mb-4 d-none" id="instructor_type_wrap">
+                                <label class="form-label">{{ get_phrase('instructor Type') }}</label>
+                                <select name="instructor_type" id="instructor_type" class="form-control">
                                     <option value="">{{ get_phrase('Select Type') }}</option>
                                     <option value="general">{{ get_phrase('General Educational') }}</option>
                                     <option value="academic">{{ get_phrase('Academic') }}</option>
@@ -101,8 +101,8 @@
                                 </select>
                             </div>
 
-                            {{-- Teacher Subject --}}
-                            <div class="col-md-6 mb-4 d-none" id="teacher_subject_wrap">
+                            {{-- instructor Subject --}}
+                            <div class="col-md-6 mb-4 d-none" id="instructor_subject_wrap">
                                 <label class="form-label">{{ get_phrase('Subject Specialization') }}</label>
                                 <input type="text" name="subject_specialization" class="form-control" placeholder="{{ get_phrase('Enter Subject') }}">
                             </div>
@@ -176,15 +176,19 @@
             $('#user_type').on('change', function() {
                 let type = $(this).val();
 
-                // Hide all first
-                $('#student_stage, #teacher_type_wrap, #teacher_subject_wrap, #institution_name_wrap, #institution_type_wrap').addClass('d-none');
+                // Hide and reset all optional fields
+                $('#student_stage').addClass('d-none').find('select').val('');
+                $('#instructor_type_wrap').addClass('d-none').find('select').val('');
+                $('#instructor_subject_wrap').addClass('d-none').find('input').val('');
+                $('#institution_name_wrap').addClass('d-none').find('input').val('');
+                $('#institution_type_wrap').addClass('d-none').find('select').val('');
 
                 if (type === 'student') {
                     $('#student_stage').removeClass('d-none');
                 }
 
-                if (type === 'teacher') {
-                    $('#teacher_type_wrap').removeClass('d-none');
+                if (type === 'instructor') {
+                    $('#instructor_type_wrap').removeClass('d-none');
                 }
 
                 if (type === 'institution') {
@@ -192,13 +196,13 @@
                 }
             });
 
-            $('#teacher_type').on('change', function() {
-                let teacherType = $(this).val();
+            $('#instructor_type').on('change', function() {
+                let instructorType = $(this).val();
 
-                if (teacherType === 'general' || teacherType === 'academic' || teacherType === 'advanced') {
-                    $('#teacher_subject_wrap').removeClass('d-none');
+                if (instructorType === 'general' || instructorType === 'academic' || instructorType === 'advanced') {
+                    $('#instructor_subject_wrap').removeClass('d-none');
                 } else {
-                    $('#teacher_subject_wrap').addClass('d-none');
+                    $('#instructor_subject_wrap').addClass('d-none').find('input').val('');
                 }
             });
         });
